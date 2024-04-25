@@ -16,6 +16,11 @@ type Expression interface {
 	expressionNode()
 }
 
+type ReturnStatement struct {
+	Token       token.Token
+	returnValue Expression
+}
+
 type Program struct {
 	Statements []Statement
 }
@@ -44,3 +49,6 @@ type Identifier struct {
 
 func (i *Identifier) expressionNode()      {}
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
+
+func (rs *ReturnStatement) statementNode()       {}
+func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
